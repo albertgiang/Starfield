@@ -48,6 +48,9 @@ class NormalParticle implements Particle {
     fill(red, green, blue);
   }
   
+  NormalParticle(){
+  }
+  
   void walk(){
     myX = myX + Math.cos(myAngle) * mySpeed;
     myY = myY + Math.sin(myAngle) * mySpeed;
@@ -109,6 +112,14 @@ class OddballParticle implements Particle{
 }
 
 class JumboParticle extends NormalParticle{
+  
+  JumboParticle(){
+    myX = 500;
+    myY = 100;
+    myAngle = Math.random() * 2 * Math.PI;
+    mySpeed = Math.random() * 10 + 5;
+  }
+  
   void show(){
     ellipse((float)myX, (float)myY, 50, 50);
   }
