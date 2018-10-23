@@ -18,8 +18,16 @@ void setup(){
   int oddGreen = (int)(Math.random() * 256);
   int oddBlue = (int)(Math.random() * 256);
   
+  System.out.println(red);
+  System.out.println(green);
+  System.out.println(blue);
+   System.out.println();
+  System.out.println(oddRed);
+  System.out.println(oddGreen);
+  System.out.println(oddBlue);
+  
   particles[0] = new OddballParticle(oddRed, oddGreen, oddBlue);
-  particles[1] = new JumboParticle();
+  particles[1] = new JumboParticle(red, green, blue);
 }
 
 void draw(){
@@ -39,13 +47,14 @@ void draw(){
 class NormalParticle implements Particle {
   
   double myX, myY, myAngle, mySpeed;
+  int myColor;
   
   NormalParticle(int red, int green, int blue){
     myX = 500;
     myY = 100;
     myAngle = Math.random() * 2 * Math.PI;
     mySpeed = Math.random() * 10 + 5;
-    fill(red, green, blue);
+    myColor = color(red, green, blue);
   }
   
   NormalParticle(){
@@ -68,6 +77,7 @@ class NormalParticle implements Particle {
   }
   
   void show(){
+    fill(myColor);
     ellipse((float)myX, (float)myY, 5, 5);
   }
   
@@ -81,46 +91,39 @@ interface Particle {
 class OddballParticle implements Particle{
   
   double myX, myY, myAngle, mySpeed;
+  int myColor;
   
-  OddballParticle(int red, int green, int blue){
+  OddballParticle(int oddRed, int oddGreen, int oddBlue){
     myX = 500;
     myY = 100;
     myAngle = Math.random() * 2 * Math.PI;
-    mySpeed = Math.random() * 10 + 5;
-    fill(red, green, blue);
+    mySpeed = Math.random() * 1;
+    myColor = color(oddRed, oddGreen, oddBlue);
   }
   
   void walk(){
     myX = myX + Math.cos(myAngle) * mySpeed;
     myY = myY + Math.sin(myAngle) * mySpeed;
-    
-    // Gravity
-    if(myAngle > 7 * Math.PI / 6 && myAngle < 11 * Math.PI / 6){
-      if(myX > 450 && myX < 550){
-        myY = myY - Math.random() * 1.5;
-      } else {
-        myY = myY + Math.random() * 2;
-      }
-    } else {
-      myY = myY + Math.random() * 2;
-    }
   }
   
   void show(){
+    fill(myColor);
     rect((float)myX, (float)myY, 25, 25);
   }
 }
 
 class JumboParticle extends NormalParticle{
   
-  JumboParticle(){
+  JumboParticle(int red, int green, int blue){
     myX = 500;
     myY = 100;
     myAngle = Math.random() * 2 * Math.PI;
     mySpeed = Math.random() * 10 + 5;
+    myColor = color(red, green, blue);
   }
   
   void show(){
+    fill(myColor);
     ellipse((float)myX, (float)myY, 50, 50);
   }
 }
