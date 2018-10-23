@@ -18,14 +18,6 @@ void setup(){
   int oddGreen = (int)(Math.random() * 256);
   int oddBlue = (int)(Math.random() * 256);
   
-  System.out.println(red);
-  System.out.println(green);
-  System.out.println(blue);
-   System.out.println();
-  System.out.println(oddRed);
-  System.out.println(oddGreen);
-  System.out.println(oddBlue);
-  
   particles[0] = new OddballParticle(oddRed, oddGreen, oddBlue);
   particles[1] = new JumboParticle(red, green, blue);
 }
@@ -42,6 +34,10 @@ void draw(){
       background(0);
       loopTracker = 0;
     }
+}
+
+void mousePressed(){
+  setup();
 }
 
 class NormalParticle implements Particle {
@@ -108,6 +104,7 @@ class OddballParticle implements Particle{
   
   void show(){
     fill(myColor);
+    rectMode(CENTER);
     rect((float)myX, (float)myY, 25, 25);
   }
 }
